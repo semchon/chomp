@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import os
 #now we need to initialize pygame
 pygame.init()
 
@@ -49,9 +50,30 @@ def draw_background(surf):
     text = custom_font.render("Chomp", True, (255, 29, 0))
     surf.blit(text, (screen_width/2-text.get_width()/2, screen_height/2-300))
 
+
+def draw_fish(surf):
+        #load our fishy tiles
+    for i in range(0,5):
+        random_fish = random.choice(os.listdir("assets/fishes"))
+        fish_at_hand = pygame.image.load(f"assets/fishes/{random_fish}").convert()
+        fish_at_hand.set_colorkey((0,0,0))
+        #^sets transparent color
+        x = random.randint(0,800-fish_at_hand.get_width())
+        y= random.randint(100, screen_height-(2 * tile_size))
+        if i%2 ==0:
+            flipped_fishy = pygame.transform.flip(fish_at_hand, flip_x=True,flip_y=False)
+            surf.blit(flipped_fishy, (x,y))
+        else:
+            surf.blit(fish_at_hand, (x,y))
+
+    #randomly distribute our fish
+
+
 running = True
 background = screen.copy()
 draw_background(background)
+draw_fish(background)
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -59,5 +81,6 @@ while running:
 
     #drawing background
     screen.blit(background, (0,0))
+
     pygame.display.flip()
 pygame.quit()
