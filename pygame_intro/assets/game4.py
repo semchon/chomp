@@ -1,7 +1,15 @@
-import pygame
-import sys
 import random
+
+import pygame
+
 import os
+
+import sys
+
+from fish import Fish, fishes  # importing the Fish class and fishes group
+
+clock =pygame.time.Clock() #enables tickrate
+
 #now we need to initialize pygame
 pygame.init()
 
@@ -16,16 +24,11 @@ tile_size = 64
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Using blit to draw tiles")
 
-#load game , designating ttf file and font size
-custom_font = pygame.font.Font("assets/fonts/Dried_Leaves.otf", size=128)
-
-
-#drawing background
 def draw_background(surf):
     #loading tiles from files. The .convert loads the image
-    water = pygame.image.load("assets/sprites/water.png").convert()
-    sand = pygame.image.load("assets/sprites/sand_top.png").convert()
-    seagrass = pygame.image.load("assets/sprites/seagrass.png").convert()
+    water = pygame.image.load("sprites/water.png").convert()
+    sand = pygame.image.load("sprites/sand_top.png").convert()
+    seagrass = pygame.image.load("sprites/seagrass.png").convert()
 
     #make PNGs transparent
     water.set_colorkey((0,0,0))
@@ -47,40 +50,44 @@ def draw_background(surf):
         surf.blit(seagrass, (x, 480))
 
     #drawing text with imported ttf fonts
+    # load game , designating ttf file and font size
+    custom_font = pygame.font.Font("fonts/Dried_Leaves.otf", size=128)
     text = custom_font.render("Chomp", True, (255, 29, 0))
     surf.blit(text, (screen_width/2-text.get_width()/2, screen_height/2-300))
 
 
-def draw_fish(surf):
-        #load our fishy tiles
-    for i in range(0,5):
-        random_fish = random.choice(os.listdir("assets/fishes"))
-        fish_at_hand = pygame.image.load(f"assets/fishes/{random_fish}").convert()
-        fish_at_hand.set_colorkey((0,0,0))
-        #^sets transparent color
-        x = random.randint(0,800-fish_at_hand.get_width())
-        y= random.randint(100, screen_height-(2 * tile_size))
-        if i%2 == 0:
-            flipped_fishy = pygame.transform.flip(fish_at_hand, flip_x=True,flip_y=False)
-            surf.blit(flipped_fishy, (x,y))
-        else:
-            surf.blit(fish_at_hand, (x,y))
 
-    #randomly distribute our fish
-
-
+#Main Loop
 running = True
 background = screen.copy()
 draw_background(background)
-draw_fish(background)
+
+#draw ze feesh
+
+for i in range(5):
+    x = random.randint(screen_width, screen_width*2)
+    y = random.randint(100, screen_height - (2 * tile_size))
+    fishes.add(Fish(x,y))
 
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        #print(event)
+        if event.type ==pygame.QUIT:
+            running=False
+    screen.blit(background,(0,0))
 
-    #drawing background
-    screen.blit(background, (0,0))
+    fishes.update()
 
+    #check if fish have left the screen
+    for fish in fishes: #loop through our feeshys
+        if fish.rect.x < -fish.rect.width:
+            fishes.remove(Fish)
+            fishes.add(Fish(random.randint(screen_width, screen_width +50), random.randint(tile_size, screen_height-tile_size)))
+
+    fishes.draw(screen)
+
+    #update disply
     pygame.display.flip()
+
+    clock.tick(50)
 pygame.quit()
