@@ -81,7 +81,7 @@ while running:
     #check if fish have left the screen
     for fish in fishes: #loop through our feeshys
         if fish.rect.x < -fish.rect.width:
-            fishes.remove(Fish)
+            fishes.remove(fish)
             fishes.add(Fish(random.randint(screen_width, screen_width +50), random.randint(tile_size, screen_height-tile_size)))
 
     fishes.draw(screen)
