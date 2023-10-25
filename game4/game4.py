@@ -26,9 +26,9 @@ pygame.display.set_caption("Using blit to draw tiles")
 
 def draw_background(surf):
     #loading tiles from files. The .convert loads the image
-    water = pygame.image.load("sprites/water.png").convert()
-    sand = pygame.image.load("sprites/sand_top.png").convert()
-    seagrass = pygame.image.load("sprites/seagrass.png").convert()
+    water = pygame.image.load("../pygame_intro/assets/sprites/water.png").convert()
+    sand = pygame.image.load("../pygame_intro/assets/sprites/sand_top.png").convert()
+    seagrass = pygame.image.load("../pygame_intro/assets/sprites/seagrass.png").convert()
 
     #make PNGs transparent
     water.set_colorkey((0,0,0))
@@ -51,7 +51,7 @@ def draw_background(surf):
 
     #drawing text with imported ttf fonts
     # load game , designating ttf file and font size
-    custom_font = pygame.font.Font("fonts/Dried_Leaves.otf", size=128)
+    custom_font = pygame.font.Font("../pygame_intro/assets/fonts/Dried_Leaves.otf", size=128)
     text = custom_font.render("Chomp", True, (255, 29, 0))
     surf.blit(text, (screen_width/2-text.get_width()/2, screen_height/2-300))
 
@@ -64,7 +64,7 @@ draw_background(background)
 
 #draw ze feesh
 
-for i in range(5):
+for i in range(10):
     x = random.randint(screen_width, screen_width*2)
     y = random.randint(100, screen_height - (2 * tile_size))
     fishes.add(Fish(x,y))
@@ -74,6 +74,7 @@ while running:
         #print(event)
         if event.type ==pygame.QUIT:
             running=False
+
     screen.blit(background,(0,0))
 
     fishes.update()

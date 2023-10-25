@@ -54,8 +54,8 @@ def draw_background(surf):
 def draw_fish(surf):
         #load our fishy tiles
     for i in range(0,5):
-        random_fish = random.choice(os.listdir("assets/fishes"))
-        fish_at_hand = pygame.image.load(f"assets/fishes/{random_fish}").convert()
+        random_fish = random.choice(os.listdir("../game4/fishes"))
+        fish_at_hand = pygame.image.load(f"../game4/fishes/{random_fish}").convert()
         fish_at_hand.set_colorkey((0,0,0))
         #^sets transparent color
         x = random.randint(0,800-fish_at_hand.get_width())

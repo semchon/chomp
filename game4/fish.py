@@ -2,16 +2,16 @@
 import os
 import pygame
 import random
-MIN_SPEED = 0.5
-MAX_SPEED = 3
+MIN_SPEED = 2
+MAX_SPEED = 5
 
 
 class Fish(pygame.sprite.Sprite):
 
     def __init__(self, x,y):
         super().__init__()
-        random_fish = random.choice(os.listdir("../../game4/fishes"))
-        self.image = pygame.image.load(f"../../game4/fishes/{random_fish}").convert()
+        random_fish = random.choice(os.listdir("fishes"))
+        self.image = pygame.image.load(f"fishes/{random_fish}").convert()
         self.image.set_colorkey((0,0,0))
         self.image = pygame.transform.flip(self.image, flip_x = True, flip_y = False)
         # below shifts the center of the image to its actual center (rectangular parameters)
