@@ -28,6 +28,9 @@ def draw_background(surf):
 
     #drawing text with imported ttf fonts
     # load game , designating ttf file and font size
-    custom_font = pygame.font.Font("../pygame_intro/assets/fonts/Dried_Leaves.otf", size=128)
-    text = custom_font.render("Chomp", True, (255, 29, 0))
+    custom_font = pygame.font.Font("../pygame_intro/assets/fonts/Dried_Leaves.otf", size=100)
+    custom_font_small = pygame.font.Font("../pygame_intro/assets/fonts/Dried_Leaves.otf", size=50)
+    text = custom_font.render("Catch the fish", True, (255, 29, 0))
+    text2 = custom_font_small.render("Use WASD to move", True, (255, 29, 0))
     surf.blit(text, (screen_width/2-text.get_width()/2, screen_height/2-300))
+    surf.blit(text2, (screen_width/2-text2.get_width()/2, screen_height/2-200))

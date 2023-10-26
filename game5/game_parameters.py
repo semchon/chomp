@@ -5,4 +5,4 @@ tile_size = 64
 
 MIN_SPEED = 3.0
 MAX_SPEED = 4.0
-PLAYER_SPEED = 4.2
+PLAYER_SPEED = 5.0
