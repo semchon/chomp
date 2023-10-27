@@ -11,9 +11,9 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load("player.png").convert()
         self.forward_image = pygame.image.load("player.png").convert()
         self.reverse_image = pygame.transform.flip(self.image, flip_x=True, flip_y=False)
-        self.image.set_colorkey((0, 0, 0))
-        self.forward_image.set_colorkey((0, 0, 0))
-        self.reverse_image.set_colorkey((0, 0, 0))
+        self.image.set_colorkey((255, 255, 255))
+        self.forward_image.set_colorkey((255, 255, 255))
+        self.reverse_image.set_colorkey((255, 255, 255))
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.x = x

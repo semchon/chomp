@@ -12,7 +12,7 @@ class Fish(pygame.sprite.Sprite):
         random_fish = random.choice(os.listdir("fishes"))
         self.image = pygame.image.load(f"fishes/{random_fish}").convert()
         self.image2 = pygame.image.load(f"fishes/{random_fish}").convert()
-        self.image.set_colorkey((0,0,0))
+        self.image.set_colorkey((255,255,255))
         self.image = pygame.transform.flip(self.image, flip_x = True, flip_y = False)
         # below shifts the center of the image to its actual center (rectangular parameters)
         self.rect = self.image.get_rect()

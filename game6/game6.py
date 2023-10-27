@@ -24,7 +24,7 @@ background = screen.copy()
 draw_background(background)
 
 #draw fish
-for i in range(9876):
+for i in range(15):
     x = random.randint(screen_width, screen_width*2)
     y = random.randint(100, screen_height - (2 * tile_size))
     fishes.add(Fish(x,y))
@@ -90,6 +90,7 @@ while running:
             pygame.mixer.Sound.play(chomp)
             fishes.add(Fish(random.randint(screen_width, screen_width + 50), random.randint(tile_size, screen_height - tile_size)))
 
+    #game loss condition
     #update display
     pygame.display.flip()
 
