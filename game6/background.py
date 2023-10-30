@@ -1,6 +1,8 @@
 import pygame
 from game_parameters import *
 import random
+from fish import Fish, fishes
+
 def draw_background(surf):
     #loading tiles from files. The .convert loads the image
     water = pygame.image.load("../pygame_intro/assets/sprites/water.png").convert()
@@ -34,3 +36,9 @@ def draw_background(surf):
     text2 = custom_font_small.render("Use Arrows to move", True, (255, 29, 0))
     surf.blit(text, (screen_width/2-text.get_width()/2, screen_height/2-300))
     surf.blit(text2, (screen_width/2-text2.get_width()/2, screen_height/2-200))
+
+def add_fish(num_fish):
+    for i in range(num_fish):
+        x = random.randint(screen_width, screen_width * 2)
+        y = random.randint(100, screen_height - (2 * tile_size))
+        fishes.add(Fish(x, y))

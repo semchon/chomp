@@ -49,17 +49,18 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             #controlling player fish vvv
-        player.stop() #ensures it stops every time you release input
+
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                print('You pressed W')
+            if event.key == pygame.K_w:
                 player.move_up()
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 player.move_left()
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_s:
                 player.move_down()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_d:
                 player.move_right()
+        if event.type == pygame.KEYUP:
+            player.stop()
 
 
     screen.blit(background,(0,0))
